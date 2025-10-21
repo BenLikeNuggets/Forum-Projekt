@@ -86,7 +86,7 @@
                                 <?= htmlspecialchars($thread['title']) ?>
                             </h2>
                             <?php if (!empty($thread['genre'])): ?>
-                                <small class="thread__genre">[<?= htmlspecialchars($thread['genre']) ?>]</small>
+                                <small class="thread__genre">Genre: [<?= htmlspecialchars($thread['genre']) ?>]</small>
                             <?php endif; ?>
                         </header>
                             <small class="thread__meta">
@@ -118,16 +118,16 @@
                             </div>
 
                             <form class="form__container" method="post" action="">
+                                <p class="form__header">Opret en kommentar</p>
                                 <input type="hidden" name="action" value="add_thread_comment">
                                 <input type="hidden" name="thread_id" value="<?= (int)$thread['id'] ?>">
-                                <input class="form__input" type="text" name="comment_username" placeholder="Brugernavn" required>
-                                <input class="form__input" type="text" name="comment_text" placeholder="Kommentar" required>
-                                <button class="form__button" type="submit">Tilføj</button>
+                                <input class="form__username" type="text" name="comment_username" placeholder="Brugernavn" required>
+                                <textarea class="form__comment" type="text" name="comment_text" placeholder="Kommentar" required></textarea>
+                                <button class="form__button" type="submit">Post Kommentar</button>
                             </form>
                         </details>
                     </article>
 
-                    <hr class="thread__divider">
                 <?php endforeach; ?>
             <?php else: ?>
                 <p class="forum__empty">
@@ -135,34 +135,32 @@
                 </p>
             <?php endif; ?>
         </section>
-        <!-- Sortering & Filtrering -->
+        <!-- Højre Layout -->
         <section class="layout__col layout__col--right">
             <form class="filter" method="get">
                 <div class="filter__group">
-                    <span class="filter__label">Sortering:</span>
-                    <a class="filter__link" href="?sort=newest<?= $genreFilter !== '' ? '&genre=' . urlencode($genreFilter) : '' ?>">Nyest</a> |
-                    <a class="filter__link" href="?sort=oldest<?= $genreFilter !== '' ? '&genre=' . urlencode($genreFilter) : '' ?>">Ældst</a>
+                    <h1 class="filter__label">Sortering</h1>
+                    <a class="reset-link" href="?sort=newest<?= $genreFilter !== '' ? '&genre=' . urlencode($genreFilter) : '' ?>">Nyeste Opslag</a>
+                    <a class="reset-link" href="?sort=oldest<?= $genreFilter !== '' ? '&genre=' . urlencode($genreFilter) : '' ?>">Ældste Opslag</a>
                 </div>
 
                 <div class="filter__group">
-                    <label class="filter__label">Genre:
-                        <select class="filter__select" name="genre" onchange="this.form.submit()">
-                            <option value="">(alle)</option>
-                            <?php foreach ($genres as $g): ?>
-                                <option value="<?= htmlspecialchars($g) ?>" <?= $g === $genreFilter ? 'selected' : '' ?>>
-                                    <?= htmlspecialchars($g) ?>
-                                </option>
-                            <?php endforeach; ?>
-                        </select>
-                    </label>
+                    <h1 class="filter__label">Genre</h1>
+                    <select class="filter__select" name="genre" onchange="this.form.submit()">
+                        <option value="">Alle</option>
+                        <?php foreach ($genres as $g): ?>
+                            <option value="<?= htmlspecialchars($g) ?>" <?= $g === $genreFilter ? 'selected' : '' ?>>
+                                <?= htmlspecialchars($g) ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
                 </div>
 
                 <input type="hidden" name="sort" value="<?= htmlspecialchars($_GET['sort'] ?? 'newest') ?>">
-
-                <nav class="forum__nav">
-                    <a class="nav__link" href="/pages/OpretFilmforslag.php">Nyt Oplæg</a> |
-                </nav>
             </form>
+            <nav class="forum__opret-opslag">
+                <a class="reset-link" href="/pages/OpretFilmforslag.php"><h1>Opret Opslag</h1></a>
+            </nav>
         </section>
     </main>
 </body>

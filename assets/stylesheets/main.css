@@ -2,32 +2,41 @@
 /* RESET */
 /* ============================= */
 
-/* RESET BOX */
+/* RESET GENERAL */
 * {
+  box-sizing: border-box;
   border: 0;
   margin: 0;
   padding: 0;
+  outline: none;
 
-  overflow-wrap: break-word;  /* modern & recommended */
-  word-break: normal;         /* optional fallback */
-  white-space: normal;        /* make sure it can wrap */
+  color: inherit;
+  font: inherit;
+  background: none;
+  text-align: inherit;
+  text-align-last: inherit;
+
+  list-style-position: inside;
+  border-color: var(--border-color) !important;
 }
 
 /* RESET LINK */
-.reset-link {
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-  color: inherit;
-}
+html {
+  .reset-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+  }
 
-.reset-link:hover, .reset-link:focus {
-  text-decoration: none;
-  color: inherit;
-}
+  .reset-link:hover, .reset-link:focus {
+    text-decoration: none;
+    color: inherit;
+  }
 
-.reset-link {
-  cursor: pointer;
+  .reset-link:hover {
+    color: rgb(255, 255, 255, 0.5);
+  }
 }
 
 /* RESET SUMMARY */
@@ -36,10 +45,28 @@ summary {
   justify-content: center;
 }
 
+/* DEFAULT HEADERS */
 h1, h2, h3, h4 {
-  color: transparent !important;
-  border-color: rgb(0, 0, 0, 0.4) !important; 
-  -webkit-text-stroke: 0.1vw rgba(0, 0, 0, 1);
+  color: var(--f-overskrift);
+  border-color: rgb(0, 0, 0, 0.4); 
+  -webkit-text-stroke: 0.1vw var(--f-overskrift-outline);
+}
+
+/* DEFAULT TEXT */
+* {
+  font-family: var(--font-body);
+  overflow-wrap: break-word;  /* modern & recommended */
+  word-break: normal;         /* optional fallback */
+  white-space: normal;        /* make sure it can wrap */
+
+  color: var(--f-opslag-tekst);
+}
+
+/* DEFAULT IMG */
+img {
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
 }
 
 /* ============================= */
@@ -48,12 +75,15 @@ h1, h2, h3, h4 {
 
 :root {
   /* Accent Colors */
-  /* --f-opslag-bg: #0c090c;
-  --f-kommentar-bg: ;
-  --f-opslag-tekst: #fafaf8;
-  --f-overskrift: ;
-  --f-main-bg: #530003;
-  --f-containere: ; */
+  --f-main-bg: #5d0505;
+  
+  --f-containere: rgb(0, 0, 0, 0.2);
+
+  --f-opslag-tekst: rgb(255, 255, 255, 0.6);
+  --f-overskrift: rgb(255, 255, 255, 0.2);
+  --f-overskrift-outline: rgb(255, 255, 255, 0.5);
+
+  --border-color: rgb(255, 255, 255, 0.6);
 
   /* Typography */
   --rem-size: 16px;
@@ -65,15 +95,14 @@ html {
   background-color: var(--f-main-bg);
 }
 
-img {
-  max-width: 100%;
-  height: auto;
-  object-fit: contain;
-}
-
 body {
   display: flex;
   flex-direction: column;
+}
+
+
+a:hover {
+  color:rgb(0, 0, 0, 0.4);
 }
 
 /* ============================= */
@@ -87,6 +116,8 @@ body {
   align-items: center;
   height: 10vw;
   margin-bottom: 1vw;
+
+  background-color: var();
 
   .logoContainer {
     height: auto;
@@ -107,7 +138,6 @@ body {
 
   h1 {
     font-size: 5vw;
-    color: var(--f-overskrift);
     border-bottom: 0.3vw solid black;
     margin-left: 1vw;
   }
@@ -204,6 +234,7 @@ html {
     align-content: stretch;
     justify-content: center;
     flex-direction: column;
+
     width: 33%;
   }
 
@@ -212,7 +243,6 @@ html {
     justify-content: center; 
   }
 
-  /* === Oplæg Opstilling === */
   .forum__title {
     display: flex;
     justify-self: center;
@@ -222,16 +252,6 @@ html {
     margin-top: 1vw;
   }
 
-  .forum__filter {
-    display: flex;
-    background-color: var(--f-opslag-bg);
-    padding: 0.5vw;
-    border-radius: 6px;
-    margin-bottom: 12px;
-    color: var(--f-opslag-tekst);
-  }
-
-  /* THREAD */
   .thread {
     display: flex;
     flex-direction: column;
@@ -239,9 +259,11 @@ html {
     margin-bottom: 0.5vw;
     border: 0.2vw solid black;
     border-radius: 1vw;
+    background-color: var(--f-containere);
 
     .thread__header {
       display: flex;
+      flex-direction: column;
 
       padding: 0.3vw;
     }
@@ -249,7 +271,10 @@ html {
     .thread__title {
       display: flex;
       justify-content: center;
+      
+      margin-bottom: 0.5vw;
 
+      text-align: center;
       font-size: 2.5vw;
     }
 
@@ -257,8 +282,12 @@ html {
       display: flex;
       align-items: center;
 
-      font-size: 1vw;
       margin: 0.2vw;
+      border-left: solid;
+      border-radius: 0.2vw;
+      padding-left: 0.2vw;
+      
+      font-size: 1vw;
     }
 
     .thread__meta {
@@ -277,6 +306,7 @@ html {
   }
 
   .comment__container {
+
     .comment__summary {
       padding: 1vw;
       font-size: 1vw;
@@ -288,9 +318,13 @@ html {
       flex-direction: column;
 
       margin: 0.5vw;
-      border-left: 0.2vw solid rgb(157, 28, 28);
+      padding: 0.3vw;
       padding-left: 0.2vw;
 
+      border: 0.2vw;
+      border-left: solid 0.2vw;
+      border-radius: 0.3vw;
+      
       background: rgba(255,255,255,0.1);
       backdrop-filter: blur(1px);
     }
@@ -304,33 +338,236 @@ html {
     .comment__username {
       display: inline-flex;
       font-size: 1.5vw;
-      border-bottom: 1vw rgba(0, 0, 0, 0.5) solid;
     }
 
     .comment__date {
       display: inline-flex;
       align-items: center;
+
+      margin-right: 0.3vw;
     }
 
     .comment__text {
       display: flex;
       width: 100%;
     }
+    
+    .comment__empty {
+      display: flex;
+      align-self: center;
+      justify-self: center;
+
+      font-size: 2vw;
+    }
   }
 
   .form__container {
     display: flex;
+    justify-content: center;
+    flex-direction: column;
 
-    .form__input {
+    width: 100%;
+
+    border-top: solid black 0.2vw;
+
+    .form__header {
       display: flex;
+      align-self: center;
 
+      border-bottom: 0.1vw solid black;
+      margin: 0.5vw;
+    }
+
+    .form__username, .form__comment, .form__button {
+      border-radius: 0.5vw;
+      border: black solid 0.1vw;
+
+      font-size: 1.5vw;
+
+      padding: 0.3vw;
+      margin: 0.2vw;
+    }
+
+    .form__username {
+      display: flex;
+      flex-grow: 0;
+      justify-content: center;
+      justify-self: center;
+    
+      width: 50%;
+
+      background-color: var(--f-containere);
+    }
+
+    .form__comment {
+      display: flex;
+      justify-content: center;
+      justify-self: center;
+
+      resize: vertical;
+      min-height: 2vw;
+      max-height: 10vw;
+
+      background-color: var(--f-containere);
     }
 
     .form__button {
       display: flex;
+      align-self: center;
+      justify-content: center;
+
+      background-color: var(--f-containere);
+
+      
     }
+    .form__button:hover {
+      background-color: rgba(255,255,255,0.4);
+    }
+  }
 
+  .filter {
+    display: flex;
+    justify-content: center;
+    justify-self: center;
 
+    padding: 0.5vw;
+    margin: 2vw;
+    margin-top: 0;
+    border: solid black 0.2vw;
+    border-radius: 0.75vw;
+
+    background-color: var(--f-containere);
+    color: var(--f-opslag-tekst);
+
+    .filter__group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    width: 50%;
+  }
+
+  .filter__label {
+    display: flex;
+    justify-content: center;
+
+    font-size: 3vw;
+  }
+
+  .filter__select {
+    background-color: var(--f-main-bg);
+    color: var(--f-opslag-tekst);
+
+    width: 90%;
+    font-size: 1.5vw;
+
+    margin-top: 0.5vw;
+    border: solid 0.1vw;
+    border-radius: 0.5vw;
+  }
+  }
+
+  .forum__opret-opslag {
+    display: flex;
+    justify-self: center;
+    align-self: center;
+
+    font-size: 2.5vw;
+  }
+}
+
+html {
+  .form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .form__wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    border: solid 0.3vw;
+    border-radius: 1vw;
+    padding: 1vw;
+    margin: 5vw;
+
+    background-color: var(--f-containere);
+  }
+
+  .form__title {
+    text-align: center;
+    font-size: 4vw;
+    margin-bottom: 2vw;
+  }
+
+  .form__error {
+    color: red;
+    margin-bottom: 1vw;
+  }
+
+  .form__body {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .form__label {
+    display: block;
+    text-align: left;
+    margin-bottom: 1vw;
+  }
+
+  .form__input, .form__textarea {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 0.6vw;
+    margin-top: 0.5vw;
+    border: 0.1vw solid ;
+    border-radius: 0.5vw;
+
+    background-color: var(--f-containere);
+    color: var(--f-opslag-tekst);
+  }
+
+  .form__textarea {
+    resize: vertical;
+    min-height: 2vw;
+  }
+
+  .form__actions {
+    display: flex;
+    justify-content: center;
+    margin-top: 0.5vw;
+    gap: 0.4vw;
+  }
+
+  .form__button {
+    background: var(--f-containere);
+    color: var(--f-opslag-tekst);
+    border: none;
+    padding: 10px 18px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  .form__button:hover {
+    background: var(--f-overskrift);
+  }
+
+  .form__nav {
+    margin-top: 1rem;
+    text-align: center;
+  }
+
+  .form__link {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .form__link:hover {
+    text-decoration: underline;
   }
 }
 
@@ -338,76 +575,6 @@ html {
 /* UTILITIES */
 /* ============================= */
 
-body * {
-  font-family: var(--font-body);
+/* body * { */
   /* outline: black solid 0.1vw; */
-}
-
-/* ============================= */
-/* COMPONENTS */
-/* ============================= */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* FORM */
-
-input[type="text"], textarea {
-  padding: 0.6vw;
-  margin: 0.6vw 0 0.6vw 0;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-button {
-  background: #49b91c;
-  color: #fff;
-  border: none;
-  padding: 10px 18px;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-button:hover {
-    background: #0056b3;
-}
-
-
-.alt {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-}
-.center-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  padding: 24px;
-}
-.center-wrapper form { width: 100%; max-width: 520px;}
-.center-wrapper h1, .center-wrapper p, .center-wrapper form { text-align: center; }
-.center-wrapper label { display: block; text-align: left; }
-.center-wrapper input[type="text"], .center-wrapper textarea { box-sizing: border-box; }
-
+/* } */

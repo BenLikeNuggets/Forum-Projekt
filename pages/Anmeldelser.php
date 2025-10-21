@@ -92,7 +92,7 @@
         </section>
 
         <!-- Middle -->
-        <section class="layout__col">
+        <section class="layout__col" closed>
             <?php if (!empty($comment_error)): ?>
                 <p class="forum__error"><?= htmlspecialchars($comment_error) ?></p>
             <?php endif; ?>
@@ -104,9 +104,9 @@
                             <h2 class="thread__title">
                                 <?= htmlspecialchars($rev['title']) ?>
                             </h2>
-                            <small class="thread__subtitle">(<?= htmlspecialchars($rev['film_title']) ?>)</small>
+                            <small class="thread__subtitle">Titel: (<?= htmlspecialchars($rev['film_title']) ?>)</small>
                             <?php if (!empty($rev['genre'])): ?>
-                                    <small class="thread__genre">[<?= htmlspecialchars($rev['genre']) ?>]</small>
+                                    <small class="thread__genre">Genre: [<?= htmlspecialchars($rev['genre']) ?>]</small>
                             <?php endif; ?>
                         </header>
                         <small class="thread__meta">
@@ -135,21 +135,20 @@
                                         </div>
                                     <?php endforeach; ?>
                                 <?php else: ?>
-                                    <p class="comment__empty">Ingen kommentarer endnu.</p>
+                                    <h1 class="comment__empty">Ingen kommentarer endnu.</h1>
                                 <?php endif; ?>
                             </div>
-
                             <form class="form__container" method="post" action="">
+                                <p class="form__header">Opret en kommentar</p>
                                 <input type="hidden" name="action" value="add_review_comment">
                                 <input type="hidden" name="review_id" value="<?= (int)$rev['id'] ?>">
-                                <input class="form__input" type="text" name="comment_username" placeholder="Brugernavn" required>
-                                <input class="form__input" type="text" name="comment_text" placeholder="Kommentar" required>
+                                <input class="form__username" type="text" name="comment_username" placeholder="Brugernavn" required>
+                                <textarea class="form__comment" type="text" name="comment_text" placeholder="Kommentar" required></textarea>
                                 <button class="form__button" type="submit">Post Kommentar</button>
                             </form>
                         </details>
                     </article>
 
-                    <hr class="thread__divider">
                 <?php endforeach; ?>
             <?php else: ?>
                 <p class="forum__empty">
@@ -158,35 +157,36 @@
             <?php endif; ?>
         </section>
 
+        <!-- Højre Layout -->
         <section class="layout__col layout__col--right">
             <form class="filter" method="get">
                 <div class="filter__group">
-                    <span class="filter__label">Sortering:</span>
-                    <a class="filter__link" href="?sort=newest<?= $genreFilter !== '' ? '&genre=' . urlencode($genreFilter) : '' ?>">Nyeste</a> |
-                    <a class="filter__link" href="?sort=oldest<?= $genreFilter !== '' ? '&genre=' . urlencode($genreFilter) : '' ?>">Ældste</a> |
-                    <a class="filter__link" href="?sort=title_az<?= $genreFilter !== '' ? '&genre=' . urlencode($genreFilter) : '' ?>">Titel A–Z</a> |
-                    <a class="filter__link" href="?sort=title_za<?= $genreFilter !== '' ? '&genre=' . urlencode($genreFilter) : '' ?>">Titel Z–A</a>
+                    <h1 class="filter__label">Sortering</h1>
+                    <a class="reset-link" href="?sort=newest<?= $genreFilter !== '' ? '&genre=' . urlencode($genreFilter) : '' ?>">Nyeste</a>
+                    <a class="reset-link" href="?sort=oldest<?= $genreFilter !== '' ? '&genre=' . urlencode($genreFilter) : '' ?>">Ældste</a>
+                    <a class="reset-link" href="?sort=title_az<?= $genreFilter !== '' ? '&genre=' . urlencode($genreFilter) : '' ?>">Titel A-Z</a>
+                    <a class="reset-link" href="?sort=title_za<?= $genreFilter !== '' ? '&genre=' . urlencode($genreFilter) : '' ?>">Titel Z-A</a>
                 </div>
 
                 <div class="filter__group">
-                    <label class="filter__label">Genre:
-                        <select class="filter__select" name="genre" onchange="this.form.submit()">
-                            <option value="">(alle)</option>
-                            <?php foreach ($genres as $g): ?>
-                                <option value="<?= htmlspecialchars($g) ?>" <?= $g === $genreFilter ? 'selected' : '' ?>>
-                                    <?= htmlspecialchars($g) ?>
-                                </option>
-                            <?php endforeach; ?>
-                        </select>
-                    </label>
+                    <h1 class="filter__label">Genre</h1>
+                    <select class="filter__select" name="genre" onchange="this.form.submit()">
+                        <option value="">Alle</option>
+                        <?php foreach ($genres as $g): ?>
+                            <option value="<?= htmlspecialchars($g) ?>" <?= $g === $genreFilter ? 'selected' : '' ?>>
+                                <?= htmlspecialchars($g) ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
                 </div>
 
                 <input type="hidden" name="sort" value="<?= htmlspecialchars($sort) ?>">
 
-                <nav class="forum__nav">
-                    <a class="nav__link" href="/pages/OpretAnmeldelse.php">Ny Anmeldelse</a> |
-                </nav>
+
             </form>
+            <nav class="forum__opret-opslag">
+                <a class="reset-link" href="/pages/OpretAnmeldelse.php"><h1>Opret Anmeldelse</h1></a>
+            </nav>
         </section>
     </main>
 </body>

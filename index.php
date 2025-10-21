@@ -3,7 +3,7 @@
 <?php include PROJECT_ROOT . '/includes/head.php'; ?>
 <?php include PROJECT_ROOT . '/includes/header.php'; ?>
 
-<body>  
+<body>
 
   <main class="menu-options">
     <article class="menu-options__container">

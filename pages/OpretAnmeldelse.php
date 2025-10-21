@@ -30,22 +30,36 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <?php include PROJECT_ROOT . '/includes/header.php'; ?>
 
 <body>
-    <div class="alt">
-        <div class="center-wrapper">
-            <h1>Skriv en anmeldelse</h1>
-            <?php if (!empty($error)) echo '<p style="color:red;">' . htmlspecialchars($error) . '</p>'; ?>
-            <form method="post" action="">
-                <label>Brugernavn:<br><input type="text" name="username" required></label>
-                <label>Rubrik:<br><input type="text" name="title" required></label>
-                <label>Filmtitel:<br><input type="text" name="film_title" required></label>
-                <label>Genre:<br><input type="text" name="genre" placeholder="(valgfri)"></label>
-                <label>Indhold:<br><textarea name="content" rows="5" cols="40" required></textarea></label>
-                <div style="text-align:center; margin-top:12px;">
-                    <button type="submit">Opret anmeldelse</button>
-                    <button type="reset">Nulstil</button>
+    <div class="form form--review">
+        <div class="form__wrapper">
+            <h1 class="form__title">Skriv en anmeldelse</h1>
+            <?php if (!empty($error)) : ?>
+                <p class="form__error"><?= htmlspecialchars($error) ?></p>
+            <?php endif; ?>
+            <form class="form__body" method="post" action="">
+                <label class="form__label">Brugernavn:<br>
+                    <input class="form__input" type="text" name="username" required>
+                </label>
+                <label class="form__label">Overskrift:<br>
+                    <input class="form__input" type="text" name="title" required>
+                </label>
+                <label class="form__label">Filmtitel:<br>
+                    <input class="form__input" type="text" name="film_title" required>
+                </label>
+                <label class="form__label">Genre:<br>
+                    <input class="form__input" type="text" name="genre" placeholder="(valgfri)">
+                </label>
+                <label class="form__label">Indhold:<br>
+                    <textarea class="form__textarea" name="content" rows="5" required></textarea>
+                </label>
+                <div class="form__actions">
+                    <button class="form__button form__button--submit" type="submit">Opret Anmeldelse</button>
+                    <button class="form__button form__button--reset" type="reset">Nulstil</button>
                 </div>
             </form>
-            <p><a href="Anmeldelser.php">Tilbage til Anmeldelser</a> | <a href="Filmforslag.php">Forum</a></p>
+            <p class="form__nav">
+                <a class="form__link" href="Anmeldelser.php">Tilbage til Anmeldelser</a>
+            </p>
         </div>
     </div>
 </body>
