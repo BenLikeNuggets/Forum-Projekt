@@ -1,0 +1,580 @@
+/* ============================= */
+/* RESET */
+/* ============================= */
+
+/* RESET GENERAL */
+* {
+  box-sizing: border-box;
+  border: 0;
+  margin: 0;
+  padding: 0;
+  outline: none;
+
+  color: inherit;
+  font: inherit;
+  background: none;
+  text-align: inherit;
+  text-align-last: inherit;
+
+  list-style-position: inside;
+  border-color: var(--border-color) !important;
+}
+
+/* RESET LINK */
+html {
+  .reset-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .reset-link:hover, .reset-link:focus {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .reset-link:hover {
+    color: rgb(255, 255, 255, 0.5);
+  }
+}
+
+/* RESET SUMMARY */
+summary {
+  display: flex;
+  justify-content: center;
+}
+
+/* DEFAULT HEADERS */
+h1, h2, h3, h4 {
+  color: var(--f-overskrift);
+  border-color: rgb(0, 0, 0, 0.4); 
+  -webkit-text-stroke: 0.1vw var(--f-overskrift-outline);
+}
+
+/* DEFAULT TEXT */
+* {
+  font-family: var(--font-body);
+  overflow-wrap: break-word;  /* modern & recommended */
+  word-break: normal;         /* optional fallback */
+  white-space: normal;        /* make sure it can wrap */
+
+  color: var(--f-opslag-tekst);
+}
+
+/* DEFAULT IMG */
+img {
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+/* ============================= */
+/* VARIABLES */
+/* ============================= */
+
+:root {
+  /* Accent Colors */
+  --f-main-bg: #5d0505;
+  
+  --f-containere: rgb(0, 0, 0, 0.2);
+
+  --f-opslag-tekst: rgb(255, 255, 255, 0.6);
+  --f-overskrift: rgb(255, 255, 255, 0.2);
+  --f-overskrift-outline: rgb(255, 255, 255, 0.5);
+
+  --border-color: rgb(255, 255, 255, 0.6);
+
+  /* Typography */
+  --rem-size: 16px;
+  --font-body: "Noto Sans", sans-serif;
+}
+
+html {
+  font-size: var(--rem-size);
+  background-color: var(--f-main-bg);
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+
+a:hover {
+  color:rgb(0, 0, 0, 0.4);
+}
+
+/* ============================= */
+/* LAYOUT */
+/* ============================= */
+
+/* HEADER */
+.website-header {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  height: 10vw;
+  margin-bottom: 1vw;
+
+  background-color: var();
+
+  .logoContainer {
+    height: auto;
+    aspect-ratio: 1 / 1;
+    padding: 1vw;
+
+    img {
+      display: flex;
+      justify-self: center;
+      align-self: center;
+      height: 7vw;
+      aspect-ratio: 1 / 1;
+      object-fit: contain;
+      border: 0.3vw solid black;
+      border-radius: 20%;
+    }
+  }
+
+  h1 {
+    font-size: 5vw;
+    border-bottom: 0.3vw solid black;
+    margin-left: 1vw;
+  }
+
+  .pictures {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 100%;
+    flex-grow: 1;
+
+    img {
+      margin: 0.2vw;
+      height: 95%;
+      aspect-ratio: 1 / 1;
+    }
+
+    #popcorn {
+      height: 70%;
+    }
+  }
+}
+
+/* MENU OPTIONS */
+html {
+  .menu-options {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    align-items: stretch;
+    width: auto;
+  }
+
+  .menu-options__container {
+      display: flex;
+      flex-grow: 1;
+      justify-content: center;
+      flex: 1 0 23%;
+      background-color: var(--f-containere);
+
+      padding: 2vw;
+      margin: 2vw;
+      margin-top: 0;
+      border: black solid 0.2vw;
+      border-radius: 1vw;
+  }
+
+  .menu-options__title {
+    font-size: 4vw;
+    border-bottom: 0.2vw solid black;
+    margin-bottom: 0.2vw;
+  }
+
+  .menu-options__subtitle {
+    font-size: 2.5vw;
+  }
+
+  .menu-options__text {
+    font-size: 1.6vw;
+  }
+
+  .menu-options__list {
+    font-size: 2vw;
+    list-style-position: inside;
+    margin-bottom: 1vw;
+    margin-top: 1vw;
+  }
+
+  .menu-options__link {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+/* FORUM, THREAD & COMMENTS */
+
+html {
+  /* FORUM */
+  .layout__header {  
+    display: flex;
+  }
+
+  .forum, .reviews {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: row;
+    font-size: 1vw;
+  }
+
+  .layout__col {
+    display: flex;
+    flex-grow: 1;
+    align-content: stretch;
+    justify-content: center;
+    flex-direction: column;
+
+    width: 33%;
+  }
+
+  .layout__header {
+    display: flex;
+    justify-content: center; 
+  }
+
+  .forum__title {
+    display: flex;
+    justify-self: center;
+    align-self: center;
+    font-size: 5vw;
+    margin-bottom: 1vw;
+    margin-top: 1vw;
+  }
+
+  .thread {
+    display: flex;
+    flex-direction: column;
+
+    margin-bottom: 0.5vw;
+    border: 0.2vw solid black;
+    border-radius: 1vw;
+    background-color: var(--f-containere);
+
+    .thread__header {
+      display: flex;
+      flex-direction: column;
+
+      padding: 0.3vw;
+    }
+
+    .thread__title {
+      display: flex;
+      justify-content: center;
+      
+      margin-bottom: 0.5vw;
+
+      text-align: center;
+      font-size: 2.5vw;
+    }
+
+    .thread__subtitle, .thread__genre {
+      display: flex;
+      align-items: center;
+
+      margin: 0.2vw;
+      border-left: solid;
+      border-radius: 0.2vw;
+      padding-left: 0.2vw;
+      
+      font-size: 1vw;
+    }
+
+    .thread__meta {
+      display: flex;
+      justify-content: space-between;
+      margin: 0.2vw;
+    }
+
+    .thread__content {
+      display: flex;
+
+      border-top: 0.2vw black solid;
+      border-bottom: 0.2vw black solid;
+      padding: 0.5vw;
+    }
+  }
+
+  .comment__container {
+
+    .comment__summary {
+      padding: 1vw;
+      font-size: 1vw;
+      list-style-position: inside;
+    }
+
+    .comment {
+      display: flex;
+      flex-direction: column;
+
+      margin: 0.5vw;
+      padding: 0.3vw;
+      padding-left: 0.2vw;
+
+      border: 0.2vw;
+      border-left: solid 0.2vw;
+      border-radius: 0.3vw;
+      
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(1px);
+    }
+
+    .comment__meta {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    .comment__username {
+      display: inline-flex;
+      font-size: 1.5vw;
+    }
+
+    .comment__date {
+      display: inline-flex;
+      align-items: center;
+
+      margin-right: 0.3vw;
+    }
+
+    .comment__text {
+      display: flex;
+      width: 100%;
+    }
+    
+    .comment__empty {
+      display: flex;
+      align-self: center;
+      justify-self: center;
+
+      font-size: 2vw;
+    }
+  }
+
+  .form__container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+
+    width: 100%;
+
+    border-top: solid black 0.2vw;
+
+    .form__header {
+      display: flex;
+      align-self: center;
+
+      border-bottom: 0.1vw solid black;
+      margin: 0.5vw;
+    }
+
+    .form__username, .form__comment, .form__button {
+      border-radius: 0.5vw;
+      border: black solid 0.1vw;
+
+      font-size: 1.5vw;
+
+      padding: 0.3vw;
+      margin: 0.2vw;
+    }
+
+    .form__username {
+      display: flex;
+      flex-grow: 0;
+      justify-content: center;
+      justify-self: center;
+    
+      width: 50%;
+
+      background-color: var(--f-containere);
+    }
+
+    .form__comment {
+      display: flex;
+      justify-content: center;
+      justify-self: center;
+
+      resize: vertical;
+      min-height: 2vw;
+      max-height: 10vw;
+
+      background-color: var(--f-containere);
+    }
+
+    .form__button {
+      display: flex;
+      align-self: center;
+      justify-content: center;
+
+      background-color: var(--f-containere);
+
+      
+    }
+    .form__button:hover {
+      background-color: rgba(255,255,255,0.4);
+    }
+  }
+
+  .filter {
+    display: flex;
+    justify-content: center;
+    justify-self: center;
+
+    padding: 0.5vw;
+    margin: 2vw;
+    margin-top: 0;
+    border: solid black 0.2vw;
+    border-radius: 0.75vw;
+
+    background-color: var(--f-containere);
+    color: var(--f-opslag-tekst);
+
+    .filter__group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    width: 50%;
+  }
+
+  .filter__label {
+    display: flex;
+    justify-content: center;
+
+    font-size: 3vw;
+  }
+
+  .filter__select {
+    background-color: var(--f-main-bg);
+    color: var(--f-opslag-tekst);
+
+    width: 90%;
+    font-size: 1.5vw;
+
+    margin-top: 0.5vw;
+    border: solid 0.1vw;
+    border-radius: 0.5vw;
+  }
+  }
+
+  .forum__opret-opslag {
+    display: flex;
+    justify-self: center;
+    align-self: center;
+
+    font-size: 2.5vw;
+  }
+}
+
+html {
+  .form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .form__wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    border: solid 0.3vw;
+    border-radius: 1vw;
+    padding: 1vw;
+    margin: 5vw;
+
+    background-color: var(--f-containere);
+  }
+
+  .form__title {
+    text-align: center;
+    font-size: 4vw;
+    margin-bottom: 2vw;
+  }
+
+  .form__error {
+    color: red;
+    margin-bottom: 1vw;
+  }
+
+  .form__body {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .form__label {
+    display: block;
+    text-align: left;
+    margin-bottom: 1vw;
+  }
+
+  .form__input, .form__textarea {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 0.6vw;
+    margin-top: 0.5vw;
+    border: 0.1vw solid ;
+    border-radius: 0.5vw;
+
+    background-color: var(--f-containere);
+    color: var(--f-opslag-tekst);
+  }
+
+  .form__textarea {
+    resize: vertical;
+    min-height: 2vw;
+  }
+
+  .form__actions {
+    display: flex;
+    justify-content: center;
+    margin-top: 0.5vw;
+    gap: 0.4vw;
+  }
+
+  .form__button {
+    background: var(--f-containere);
+    color: var(--f-opslag-tekst);
+    border: none;
+    padding: 10px 18px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  .form__button:hover {
+    background: var(--f-overskrift);
+  }
+
+  .form__nav {
+    margin-top: 1rem;
+    text-align: center;
+  }
+
+  .form__link {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .form__link:hover {
+    text-decoration: underline;
+  }
+}
+
+/* ============================= */
+/* UTILITIES */
+/* ============================= */
+
+/* body * { */
+  /* outline: black solid 0.1vw; */
+/* } */

@@ -1,0 +1,13 @@
+
+
+
+// file == index.php
+<?php require_once __DIR__ . '/bootstrap.php'; ?>
+
+// file != index.php
+<?php require_once __DIR__ . '/../bootstrap.php'; ?>
+
+
+// file == who cares bro
+<?php include PROJECT_ROOT . '/includes/head.php'; ?>
+<?php include PROJECT_ROOT . '/includes/header.php'; ?>
